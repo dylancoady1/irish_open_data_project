@@ -45,7 +45,14 @@ def main() -> None:
     if len(sys.argv) != 2:
         sys.exit("Usage: python src/irish_data/extract.py TABLE_CODE")
     table_code = sys.argv[1]
-    data = fetch_table(table_code)
+    try:
+        data = fetch_table(table_code)
+    except requests.HTTPError as error:
+        if error.response.status_code == 404:
+            sys.exit(f"Table '{table_code}' not found. Check the code on data.cso.ie.")
+        sys.exit(f"Request failed: {error}")
+    except RuntimeError as error:
+        sys.exit(str(error))
     path = save_raw(data, table_code)
     print(f"Saved {path}")
 
