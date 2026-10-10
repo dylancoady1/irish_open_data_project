@@ -223,4 +223,6 @@ __marimo__/
 .DS_Store
 **/.DS_Store
 
-*.json
+# ignore all database related information
+data/raw/
+*.db
