@@ -33,7 +33,7 @@ def fetch_table(table_code: str, retries: int = 3, timeout: int = 30) -> dict:
         time.sleep(2 ** attempt)
 
 def save_raw(data: dict, table_code: str, directory: Path = RAW_DIR) -> Path:
-    """Write the response to a timestamped file and return its path."""
+    # Write the response to a timestamped file and return its path.
     directory.mkdir(parents=True, exist_ok=True)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     path = directory / f"{table_code.upper()}_{stamp}.json"
