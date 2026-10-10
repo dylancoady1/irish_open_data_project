@@ -2,6 +2,8 @@
 
 from pathlib import Path
 
-RAW_DIR = Path("data/raw")
-DB_PATH = Path("data/pipeline.db")
-SCHEMA_FILE = Path("sql/schema.sql")
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+RAW_DIR = PROJECT_ROOT / "data" / "raw"
+DB_PATH = PROJECT_ROOT / "data" / "pipeline.db"
+SCHEMA_FILE = PROJECT_ROOT / "sql" / "schema.sql"
